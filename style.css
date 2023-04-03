@@ -1,0 +1,255 @@
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
+  /*
+    2. Remove default margin
+  */
+  * {
+    margin: 0;
+  }
+  /*
+    3. Allow percentage-based heights in the application
+  */
+  html, body {
+    height: 100%;
+  }
+  /*
+    Typographic tweaks!
+    4. Add accessible line-height
+    5. Improve text rendering
+  */
+  body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  /*
+    6. Improve media defaults
+  */
+  img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+  }
+  /*
+    7. Remove built-in form typography styles
+  */
+  input, button, textarea, select {
+    font: inherit;
+  }
+  /*
+    8. Avoid text overflows
+  */
+  p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+  }
+  /*
+    9. Create a root stacking context
+  */
+  #root, #__next {
+    isolation: isolate;
+  }
+
+
+:root{
+    /* COLORS */
+    --clr-primary-400: hsl(215, 51%, 70%);
+    --clr-primary-600: hsl(178, 100%, 50%);
+
+    --clr-neutral-mainbg: hsl(217, 54%, 11%);
+    --clr-neutral-cardbg: hsl(216, 50%, 16%);
+    --clr-neutral-line: hsl(215, 32%, 27%);
+    --clr-neutral-white: hsl(0, 0%, 100%);
+
+    /* TYPOGRAPHY */
+    --ff-400: 'Outfit', sans-serif;
+
+    --fs-300: 1rem;
+    --fs-400: 1.125rem;
+    --fs-500: 1.25rem;
+    --fs-600: 1.35rem;
+    --fs-700: 1.4rem;
+
+    --fw-300: 300;
+    --fw-400: 400;
+    --fw-600: 600;
+}
+
+body{
+    font-family: var(--ff-400);
+    font-size: var(--fs-400);
+    font-weight: var(--fs-300);
+}
+
+main{
+    min-height: 100dvh;
+    display: grid;
+    place-content: center;
+    background-color: var(--clr-neutral-mainbg);
+}
+
+div.preview-card{
+    background-color: var(--clr-neutral-cardbg);
+    border-radius: 1.5em;
+    padding: 1.3em;
+    margin: 1.35em;
+    display: grid;
+    gap: .65em;
+    color: var(--clr-primary-400);
+    max-width: 370px;
+}
+
+@media (min-width: 600px){
+  div.preview-card{
+    gap: .75em;
+  }
+}
+
+picture.preview-card__img{
+    border-radius: .5em;
+    overflow: hidden;
+}
+
+@media (min-width: 600px){
+  picture.preview-card__img{
+    position: relative;
+  }
+
+  picture.preview-card__img:hover::before,
+  picture.preview-card__img:hover::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+  }
+
+  picture.preview-card__img:hover::before{
+    background-color: var(--clr-primary-600);
+    opacity: .5;
+  }
+
+  picture.preview-card__img:hover::after{
+    background: url(images/icon-view.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
+
+h1.preview-card__title{
+    font-size: var(--fs-600);
+    font-weight: var(--fw-600);
+    margin-top: .6em;
+}
+
+@media (min-width: 600px){
+  h1.preview-card__title{
+    font-size: var(--fs-700);
+  }
+}
+
+.preview-card a{
+    text-decoration: none;
+    color: var(--clr-neutral-white);
+}
+
+.preview-card a:hover,
+.preview-card a:active,
+.preview-card a:focus{
+    color: var(--clr-primary-600);
+}
+
+p.preview-card__description{
+    font-size: var(--fs-300);
+    font-weight: var(--fw-300);
+    margin-bottom: .25em;
+}
+
+@media (min-width: 600px){
+  p.preview-card__description{
+    font-size: var(--fs-500);
+    line-height: 1.35;
+  }  
+}
+
+div.preview-card__wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: var(--fs-300);
+    border-bottom: 1px solid var(--clr-neutral-line);
+    padding-bottom: .85em;
+}
+
+
+@media (min-width: 600px){
+  div.preview-card__wrapper{
+    margin-top: .4em;
+    padding-bottom: 1.5em;
+  }
+}
+
+div.preview-card__wrapper div:is(.preview-card__value, .preview-card__time){
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: .35em;
+}
+
+div.preview-card__value a{
+    color: var(--clr-primary-600);
+    font-weight: var(--fw-600);
+}
+
+div.preview-card__credits-card{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: .85em;
+    margin-top: .25em;
+}
+
+@media (min-width: 600px){
+  div.preview-card__credits-card{
+    margin-bottom: .5em;
+  }
+}
+
+picture.preview-card__avatar{
+    width: 1.85em;
+    height: auto;
+}
+
+picture.preview-card__avatar img{
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--clr-neutral-white);
+    border-radius: 100%;
+}
+
+h2.preview-card__credits{
+  width: fit-content;
+  font-size: var(--fs-300);
+  font-weight: var(--fw-300);
+}
+
+@media (min-width: 600px){
+  h2.preview-card__credits{
+    font-weight: var(--fw-400);
+  }
+}
+
+
+
+.attribution { 
+    font-size: 11px; 
+    text-align: center; 
+}
+
+.attribution a { 
+    color: hsl(228, 45%, 44%); 
+}
